@@ -9,8 +9,13 @@ import org.springframework.context.annotation.Configuration;
 
 import com.green.common.config.properties.BeetlProperties;
 
+/**
+ * @author limingliang
+ * @version 2018年10月12日 上午11:08:48 
+ */
 @Configuration
 public class BeetlConfig {
+	
 	@Autowired
     BeetlProperties beetlProperties;
 
