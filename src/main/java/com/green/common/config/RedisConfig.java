@@ -41,7 +41,6 @@ public class RedisConfig {
 	}
 
 	@Bean
-	@DependsOn("jedisConnectionFactory")
 	public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
 		System.out.println("------------" + redisConnectionFactory);
 		Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(
