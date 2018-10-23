@@ -1,4 +1,4 @@
-package com.green.common.config.web;
+package com.green.common.config;
 
 import java.util.HashMap;
 import java.util.Map;
