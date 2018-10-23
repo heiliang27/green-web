@@ -3,9 +3,9 @@ package com.green.common.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.RedisSentinelConfiguration;
+import org.springframework.data.redis.connection.RedisPassword;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
@@ -31,18 +31,23 @@ public class RedisConfig {
 	}
 
 	@Bean
-	public JedisConnectionFactory jedisConnectionFactory(JedisPoolConfig jedisPoolConfig) {
-		System.out.println("----------" + jedisPoolConfig);
-		RedisSentinelConfiguration sentinelConfig = new RedisSentinelConfiguration();
-		sentinelConfig.sentinel(redisProperties.getHost(), redisProperties.getPort());
-		JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(sentinelConfig, jedisPoolConfig);
-		System.out.println("----------" + jedisConnectionFactory);
+	public RedisStandaloneConfiguration standaloneConfig() {
+		RedisStandaloneConfiguration standaloneConfig = new RedisStandaloneConfiguration();
+		standaloneConfig.setDatabase(redisProperties.getDatabase());
+		standaloneConfig.setHostName(redisProperties.getHost());
+		standaloneConfig.setPort(redisProperties.getPort());
+		standaloneConfig.setPassword(RedisPassword.of(redisProperties.getPassword()));
+		return standaloneConfig;
+	}
+
+	@Bean
+	public JedisConnectionFactory jedisConnectionFactory(RedisStandaloneConfiguration redisStandaloneConfiguration) {
+		JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(redisStandaloneConfiguration);
 		return jedisConnectionFactory;
 	}
 
 	@Bean
 	public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-		System.out.println("------------" + redisConnectionFactory);
 		Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(
 				Object.class);
 		ObjectMapper om = new ObjectMapper();

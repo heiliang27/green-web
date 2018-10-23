@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 	
 	@Autowired
-	private RedisTemplate<String, Object> redisTemplate; 
+    private RedisTemplate redisTemplate;
 
 	@RequestMapping("/login")
 	public String login(){
 		redisTemplate.opsForValue().set("lml", "limingliang250"); 
+		System.out.println("---------redis----"+redisTemplate.opsForValue().get("lml"));
 		return "login.html";
 	}
 }
