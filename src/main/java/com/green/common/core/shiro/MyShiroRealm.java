@@ -35,10 +35,7 @@ public class MyShiroRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		String username = (String) token.getPrincipal();
-		User userInfo = new User();	
-		if (userInfo == null) {
-			return null;
-		}		
+		User userInfo = new User();				
 		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(userInfo, // 用户名
 				userInfo.getPassword(), // 密码
 				ByteSource.Util.bytes(userInfo.getSalt()), // salt=username+salt

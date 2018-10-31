@@ -8,6 +8,6 @@ package com.green.common.core.redis;
  */
 public class RedisShiroUtil {
 
-    public static final String REDIS_SHIRO_CACHE = "hades-shiro-cache:";
+    public static final String REDIS_SHIRO_CACHE = "green-shiro-cache:";
     public static final long globExpire = 30;
 }
