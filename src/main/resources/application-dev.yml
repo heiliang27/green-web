@@ -1,0 +1,15 @@
+spring:
+    datasource:
+      druid:
+        green:
+          #filters: stat,wall,log4j
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1/green?useUnicode=true&characterEncoding=UTF8&useSSL=false
+          username: root
+          password: 12345678
+        hades:
+          #filters: stat,wall,log4j
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1/green?useUnicode=true&characterEncoding=UTF8&useSSL=false
+          username: root
+          password: 12345678
