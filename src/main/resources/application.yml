@@ -1,23 +1,21 @@
-# server端口
+#-----------server端口----------------
 server:
-  port: 8090 
-    
-###################  beetl配置  ###################
-beetl:
-  delimiter-statement-start: \@   #开始结束标签(yaml不允许@开头)
-  delimiter-statement-end: null
-  resource-tagroot: common/tags   #自定义标签文件Root目录和后缀
-  resource-tagsuffix: tag
-  resource-auto-check: true #是否检测文件变化,开发用true合适，但线上要改为false
+  port: 8090
   
-###################  spring配置  ###################
+#-----------spring配置----------------
 spring:
+  profiles:
+    active: dev
   application:
     name: green-web
   mvc:
     static-path-pattern: /static/**
     view:
-      prefix: /WEB-INF/view/
+      prefix: /templates/view/
+      suffix: .html
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
   http:
     converters:
       preferred-json-mapper: fastjson
@@ -41,6 +39,23 @@ spring:
     database: 0
     host: 127.0.0.1
     port: 6379
-#    password: 12345
     ssl: false
     timeout: 2000
+    
+#-------------beetl配置---------------
+beetl:
+  delimiter-statement-start: \@   #开始结束标签(yaml不允许@开头)
+  delimiter-statement-end: null
+  resource-tagroot: common/tags   #自定义标签文件Root目录和后缀
+  resource-tagsuffix: tag
+  resource-auto-check: true #是否检测文件变化,开发用true合适，但线上要改为false  
+
+#--------------mybatis-----------------
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  type-aliases-package: com.green.system.**.entity
+  global-config:
+    id-type: 3 
+    refresh: true 
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl 
