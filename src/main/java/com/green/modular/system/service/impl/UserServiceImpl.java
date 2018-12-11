@@ -4,6 +4,8 @@ import com.green.modular.system.entity.User;
 import com.green.modular.system.mapper.UserMapper;
 import com.green.modular.system.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,9 +14,18 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author limingliang
- * @since 2018-12-10
+ * @since 2018-12-11
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+	
+	@Autowired
+	UserMapper userMapper;
+
+	/** 查询用户信息通过用户名称 */
+	@Override
+	public User getUserByAccest(String account) {
+		return userMapper.getUserByAccest(account);
+	}	
 
 }

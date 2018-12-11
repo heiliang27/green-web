@@ -24,7 +24,7 @@ spring:
       max-file-size: 100MB #最大文件大小
   devtools:
     restart:
-      enabled: false #是否开启开发者工具（true/false）
+      enabled: true #是否开启开发者工具（true/false）
       additional-paths: src/main/java
       exclude: static/**,WEB-INF/view/**
   aop:
@@ -53,7 +53,7 @@ beetl:
 #--------------mybatis-----------------
 mybatis-plus:
   mapper-locations: classpath*:mapper/**/*Mapper.xml
-  type-aliases-package: com.green.system.**.entity
+  type-aliases-package: com.green.modular.**.entity
   global-config:
     id-type: 3 
     refresh: true 

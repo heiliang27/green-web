@@ -9,8 +9,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author limingliang
- * @since 2018-12-10
+ * @since 2018-12-11
  */
 public interface IUserService extends IService<User> {
+
+	User getUserByAccest(String account);
 
 }

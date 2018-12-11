@@ -9,7 +9,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import com.green.common.enums.DatasourceEnum;
 import com.green.core.datasource.DataSourceContextHolder;
@@ -17,7 +17,8 @@ import com.green.core.datasource.annotation.DataSource;
 
 @Aspect
 @Component
-public class DataSourceAspect implements Ordered {
+@Order(-1)
+public class DataSourceAspect{
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Pointcut(value = "@annotation(com.green.core.datasource.annotation.DataSource)")
@@ -51,10 +52,5 @@ public class DataSourceAspect implements Ordered {
 			log.debug("清空数据源信息！");
 			DataSourceContextHolder.clearDataSourceType();
 		}
-	}
-
-	@Override
-	public int getOrder() {
-		return 1;
-	}
+	}	
 }
