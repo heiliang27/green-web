@@ -8,7 +8,7 @@
 		roleid, deptid, status, createtime, version
 	</sql>
 	
-	<select id="getUserByAccest" resultType="user">
+	<select id="getUserByAccest" resultType="com.green.modular.system.entity.User">
 		select
 		<include refid="Base_Column_List" />
 		from user where account = #{account} and status != 3
