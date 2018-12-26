@@ -64,6 +64,11 @@
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.46</version>
+		</dependency>
 		<!-- jedis -->
 		<dependency>
 			<groupId>redis.clients</groupId>

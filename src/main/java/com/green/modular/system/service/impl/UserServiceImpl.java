@@ -1,5 +1,6 @@
 package com.green.modular.system.service.impl;
 
+import com.green.core.datasource.annotation.DataSource;
 import com.green.modular.system.entity.User;
 import com.green.modular.system.mapper.UserMapper;
 import com.green.modular.system.service.IUserService;
@@ -24,6 +25,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
 	/** 查询用户信息通过用户名称 */
 	@Override
+	@DataSource(name = "hadesDataSource")
 	public User getUserByAccest(String account) {
 		return userMapper.getUserByAccest(account);
 	}	
